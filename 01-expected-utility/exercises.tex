@@ -1,0 +1,415 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+
+\begin{document}
+
+\section*{Exercises}
+
+\subsection*{Problem 1}
+A decision maker chooses among monetary lotteries with three possible outcomes: $3500$, $2800$, and $0$.
+
+\medskip
+
+\noindent \textbf{Choice 1.} The decision maker compares:
+\[
+A:\ 
+\begin{cases}
+3500 & \text{with prob.\ } 0.30,\\
+2800 & \text{with prob.\ } 0.66,\\
+0    & \text{with prob.\ } 0.04,
+\end{cases}
+\qquad
+B:\ 3500 \text{ for sure.}
+\]
+In this first choice, the decision maker selects $B$.
+
+\medskip
+
+\noindent \textbf{Choice 2.} The decision maker then compares:
+\[
+A':\
+\begin{cases}
+3500 & \text{with prob.\ } 0.30,\\
+2800 & \text{with prob.\ } 0.00,\\
+0    & \text{with prob.\ } 0.70,
+\end{cases}
+\qquad
+B':\
+\begin{cases}
+3500 & \text{with prob.\ } 0.00,\\
+2800 & \text{with prob.\ } 0.34,\\
+0    & \text{with prob.\ } 0.66.
+\end{cases}
+\]
+In this second choice, the decision maker selects $A'$.
+
+\medskip
+
+Determine whether these choices can be rationalized by preferences that admit an expected utility (vNM) representation, and justify your conclusion.
+
+\subsection*{Answer}
+By Definition 6.B.5 in \emph{Microeconomic Theory} (Mas-Colell, Whinston, and Green), a preference over lotteries admits a vNM expected utility representation if there exists a utility index $u(\cdot)$ such that for any lottery
+\[
+L=(p_1,\dots,p_N),
+\]
+its utility is given by
+\[
+U(L)=\sum_{i=1}^{N} p_i\,u(x_i).
+\]
+
+\subsubsection*{Step 1: Lotteries $A$ and $B$}
+\[
+EU(A)=0.30\,u(3500)+0.66\,u(2800)+0.04\,u(0),
+\qquad
+EU(B)=u(3500).
+\]
+
+Using affine invariance of vNM utility, normalize
+\[
+u(3500)=1,
+\qquad
+u(0)=0.
+\]
+Then
+\[
+EU(A)=0.30+0.66\,u(2800),
+\qquad
+EU(B)=1.
+\]
+
+Since the decision maker chooses $B$ over $A$ (i.e.\ $B \succ A$), we require
+\[
+1 > 0.30 + 0.66\,u(2800).
+\]
+Solving for $u(2800)$:
+\[
+0.70 > 0.66\,u(2800)
+\quad\Longrightarrow\quad
+u(2800) < \frac{0.70}{0.66}\approx 1.06.
+\]
+
+\subsubsection*{Step 2: Lotteries $A'$ and $B'$}
+\[
+EU(A')=0.30\,u(3500)+0\cdot u(2800)+0.70\,u(0),
+\qquad
+EU(B')=0\cdot u(3500)+0.34\,u(2800)+0.66\,u(0).
+\]
+
+With the same normalization $u(3500)=1$ and $u(0)=0$:
+\[
+EU(A')=0.30,
+\qquad
+EU(B')=0.34\,u(2800).
+\]
+
+Since the decision maker chooses $A'$ over $B'$ (i.e.\ $A' \succ B'$), we require
+\[
+0.30 > 0.34\,u(2800).
+\]
+Solving for $u(2800)$:
+\[
+u(2800) < \frac{0.30}{0.34}\approx 0.88.
+\]
+
+\subsubsection*{Conclusion}
+There exists a non-empty set of utility values satisfying both observed choices. In particular, any
+\[
+u(2800) < 0.88
+\]
+satisfies both $B \succ A$ and $A' \succ B'$ under the normalization $u(3500)=1$ and $u(0)=0$.
+Therefore, the choices are consistent with expected utility.
+
+\newpage
+
+\subsection*{Problem 2}
+Consider a decision maker who evaluates uncertain career outcomes according to the expected utility criterion. After completing a program of study, the individual may end up working in one of three sectors:
+the financial sector ($A$), the movie industry ($B$), or the car industry ($C$).
+
+The decision maker can apply to one of several schools, each leading to different career prospects:
+\begin{itemize}
+\item Attending School $S_1$ guarantees employment in the car industry.
+\item Attending School $S_2$ guarantees employment in the financial sector.
+\item Attending School $S_3$ leads to employment in the movie industry with probability $0.1$ and in the financial sector with probability $0.9$.
+\end{itemize}
+
+The decision maker considers School $S_2$ to be the least preferred option and is indifferent between Schools $S_1$ and $S_3$.
+
+\begin{enumerate}
+\item Provide a utility representation consistent with these preferences.
+\item Suppose a new option, School $S_4$, becomes available. After attending School $S_4$, the decision maker works in each sector with probability $1/3$. Rank School $S_4$ relative to the other schools.
+\item Access to School $S_4$ is limited. Instead of applying directly, the decision maker must apply to a lottery that leads to admission to School $S_4$ with probability $\alpha \in [0,1]$ and to School $S_2$ with probability $1-\alpha$. For which values of $\alpha$ does the decision maker prefer applying directly to School $S_1$ rather than participating in this lottery?
+\end{enumerate}
+
+\subsection*{Answer}
+First, we build the expected utilities for the three different schools:
+\[
+\begin{aligned}
+EU(S_1) &= u(C), \\
+EU(S_2) &= u(A), \\
+EU(S_3) &= 0.1\,u(B) + 0.9\,u(A).
+\end{aligned}
+\]
+
+We are given that School $S_2$ is the least preferred option and that the decision maker is indifferent between Schools $S_1$ and $S_3$. Therefore, the preferences must satisfy:
+\[
+EU(S_1) \sim EU(S_3) > EU(S_2).
+\]
+
+Indifference between $S_1$ and $S_3$ implies:
+\[
+u(C) = 0.1\,u(B) + 0.9\,u(A).
+\]
+
+Since $S_2$ is the least preferred option, it follows that $u(A)$ is the lowest utility level. Moreover, because $u(C)$ is obtained as a convex combination that assigns positive probability to $B$, the preference ordering must be:
+\[
+u(B) > u(C) > u(A).
+\]
+
+We now apply the vNM normalization:
+\[
+u(B) = 1, \qquad u(A) = 0.
+\]
+
+Using the indifference condition, we obtain:
+\[
+u(C) = 0.1.
+\]
+
+\subsubsection*{Ranking School $S_4$}
+School $S_4$ yields each career outcome with equal probability:
+\[
+S_4 = \{A,B,C\}, \qquad P = \left(\tfrac{1}{3}, \tfrac{1}{3}, \tfrac{1}{3}\right).
+\]
+
+Its expected utility is:
+\[
+EU(S_4) = \tfrac{1}{3}u(A) + \tfrac{1}{3}u(B) + \tfrac{1}{3}u(C).
+\]
+
+Substituting the normalized utilities:
+\[
+\begin{aligned}
+EU(S_1) &= 0.1, \\
+EU(S_2) &= 0, \\
+EU(S_3) &= 0.1, \\
+EU(S_4) &= \tfrac{1}{3}(0 + 1 + 0.1) \approx 0.37.
+\end{aligned}
+\]
+
+Hence, the ranking of schools is:
+\[
+S_4 > S_3 \sim S_1 > S_2.
+\]
+
+\subsubsection*{Lottery over Schools}
+Consider the compound lottery:
+\[
+L_\alpha = \{S_4, S_2\}, \qquad P = (\alpha, 1-\alpha).
+\]
+
+By the vNM reduction axiom, its expected utility is:
+\[
+EU(L_\alpha) = \alpha\,EU(S_4) + (1-\alpha)\,EU(S_2).
+\]
+
+The decision maker is indifferent between applying to School $S_1$ and participating in the lottery when:
+\[
+EU(S_1) = EU(L_\alpha).
+\]
+
+Substituting values:
+\[
+0.1 = \alpha(0.37).
+\]
+
+Solving for $\alpha$:
+\[
+\alpha \leq 0.27.
+\]
+
+\newpage
+
+\subsection*{Problem 3}
+Consider a decision maker who evaluates risky prospects according to the expected utility criterion. The utility function over outcomes is given by
+\[
+u(x) = x^{a},
+\]
+where the parameter satisfies $a<1$.
+
+The decision maker faces two lotteries defined over the interval $[0,1]$:
+\begin{itemize}
+\item Lottery $X$ yields an outcome that is continuously and uniformly distributed on $[0,1]$.
+\item Lottery $Y$ yields outcome $0$ with probability $1/3$ and outcome $1$ with probability $2/3$.
+\end{itemize}
+
+\begin{enumerate}
+\item Compute the expected utility of lottery $X$.
+\item Compute the expected utility of lottery $Y$.
+\item Determine the value $a^*$ for which the decision maker is indifferent between lotteries $X$ and $Y$.
+\item For $a>a^*$, determine which lottery is preferred by the decision maker.
+\end{enumerate}
+
+\subsection*{Answer}
+First, we know that the outcome of lottery $X$ is uniformly distributed on $[0,1]$. For a uniform distribution on this interval, the density is given by $f(x)=1$.
+
+\[
+\mathbb{E}[u(X)] = \mathbb{E}[X^{a}].
+\]
+
+Therefore,
+\[
+\mathbb{E}[X^{a}] = \int_{0}^{1} x^{a}\,dx
+= \left[ \frac{x^{a+1}}{a+1} \right]_{0}^{1}
+= \frac{1}{a+1}.
+\]
+
+Hence,
+\[
+\mathbb{E}[u(X)] = \frac{1}{a+1}.
+\]
+
+Now, for the next part we construct the lottery $Y$:
+\[
+Y = \{0,1; \, p=(\tfrac{1}{3}, \tfrac{2}{3})\}.
+\]
+
+With this lottery, we can compute the expected utility:
+\[
+EU(Y) = \tfrac{1}{3}u(0) + \tfrac{2}{3}u(1)
+= \tfrac{1}{3}(0)^{a} + \tfrac{2}{3}(1)^{a}
+= \tfrac{2}{3}.
+\]
+
+Thus,
+\[
+EU(Y) = \frac{2}{3}.
+\]
+
+Now they ask for the value $a^*$ such that $Y \sim X$. In other words, they ask to solve $a^*$ from
+\[
+\mathbb{E}[u(X)] = EU(Y).
+\]
+
+That is,
+\[
+\frac{1}{a+1} = \frac{2}{3}.
+\]
+
+Solving for $a$, we obtain
+\[
+a^* = \frac{1}{2}.
+\]
+
+For the next part, we evaluate the expected utilities as functions of $a$.
+\[
+\mathbb{E}[u(X)] = \frac{1}{a+1}.
+\]
+
+If $a$ increases, then the expected utility of lottery $X$ decreases. On the other hand, the expected utility of lottery $Y$ does not depend on $a$, since
+\[
+EU(Y) = \frac{2}{3}.
+\]
+
+Therefore, for $a>a^*$,
+\[
+EU(Y) > EU(X),
+\]
+and the decision maker prefers lottery $Y$.
+
+\newpage
+
+\subsection*{Problem 4}
+Consider a decision maker whose preferences over risky prospects are represented by expected utility, with Bernoulli utility function $u(x)$. The decision maker faces the following lottery:
+\[
+L = \{0,4,9\} \quad \text{with probabilities} \quad \left(\tfrac{1}{6}, \tfrac{1}{2}, \tfrac{1}{3}\right).
+\]
+
+Answer the following questions:
+\begin{enumerate}
+\item Provide the definition of the certainty equivalent of $L$ given a utility function $u$.
+\item Compute the certainty equivalent of $L$ when $u(x)=\sqrt{x}$.
+\item Compute the coefficient of absolute risk aversion associated with $u$.
+\item Suppose the decision maker has initial wealth $w=12$ and owns the lottery $L$. Determine the minimum amount of money the decision maker is willing to accept in order to sell the lottery.
+\end{enumerate}
+
+\subsection*{Answer}
+\textbf{Definition of the certainty equivalent.}
+
+Given a lottery $L \in \mathcal{L}$ and a utility function $u$ representing the preferences of an expected utility individual, the certainty equivalent of $L$ is the amount $c(L,u)$ such that the individual is indifferent between receiving $c(L,u)$ for sure and playing the lottery $L$.
+
+\medskip
+
+First, we compute the certainty equivalent for the lottery $L$ given $u(x)=\sqrt{x}$.  
+For this, we first compute the expected utility of $L$:
+\[
+U(L) = \frac{1}{6}\sqrt{0} + \frac{1}{2}\sqrt{4} + \frac{1}{3}\sqrt{9}
+= \frac{1}{6}\cdot 0 + \frac{1}{2}\cdot 2 + \frac{1}{3}\cdot 3
+= 2.
+\]
+
+Now we compute $c(L,u)$. By definition,
+\[
+u(c(L,u)) = \sqrt{c} = 2,
+\]
+which implies
+\[
+c = 4.
+\]
+
+Therefore,
+\[
+c(L,u) = 4.
+\]
+
+\medskip
+
+Now we compute the coefficient of absolute risk aversion. We compute the first and second derivatives of the utility function:
+\[
+u'(x) = \frac{1}{2\sqrt{x}}, 
+\qquad
+u''(x) = -\frac{1}{4x^{3/2}}.
+\]
+
+Thus, the coefficient of absolute risk aversion is
+\[
+A(x) = -\frac{u''(x)}{u'(x)} = \frac{1}{2x}.
+\]
+
+\medskip
+
+Finally, to find the minimum price, we note that the individual starts with initial wealth $w=12$ and receives a payment $q$ if he sells the lottery. The individual is willing to sell the lottery if
+\[
+u(w+q) = \mathbb{E}[u(w+L)].
+\]
+
+The possible wealth levels after receiving the lottery outcomes are:
+\[
+\sqrt{12+0}, \qquad \sqrt{12+4}, \qquad \sqrt{12+9}.
+\]
+
+We compute the expected utility:
+\[
+\mathbb{E}[u(w+L)]
+= \frac{1}{6}\sqrt{12} + \frac{1}{2}\sqrt{16} + \frac{1}{3}\sqrt{21}
+\approx 4.1.
+\]
+
+Therefore, the individual is willing to sell the lottery if
+\[
+u(w+q) \geq 4.1,
+\]
+that is,
+\[
+\sqrt{12+q} \geq 4.1.
+\]
+
+Solving for $q$:
+\[
+12+q \geq 4.1^2
+\quad\Longrightarrow\quad
+q \geq 4.1^2 - 12.
+\]
+
+\end{document}
