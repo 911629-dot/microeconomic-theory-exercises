@@ -1,0 +1,226 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{microtype}
+
+\title{Notes on Investment and Certainty Equivalents}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Optimal Investment under Expected Utility}
+
+\section*{Setup}
+
+Consider an agent with initial wealth \( w > 0 \) who allocates resources between two assets.
+
+The first asset is risk-free: each euro invested yields \(1+r\), where \(r>0\).
+
+The second asset is risky: each euro invested yields a random gross return \( \theta \in \Theta \), where \( \theta \) is a real-valued random variable with cumulative distribution function \(F\).
+
+If the agent invests \(x\) euros in the risky asset (allowing \(x>w\), i.e., borrowing at the risk-free rate), final wealth is
+\[
+f(x,\theta) \;=\; x\theta + (1+r)(w-x)
+\;=\; x(\theta-(1+r)) + w(1+r).
+\]
+Expected utility is
+\[
+U(x) \;=\; \int_{\Theta} u(f(x,\theta))\, dF(\theta)
+\;=\; \mathbb{E}\big[u(f(x,\theta))\big],
+\]
+where \(u\) is strictly increasing, concave, and twice continuously differentiable. The choice problem is
+\[
+x^* \in \arg\max_{x\ge 0} U(x).
+\]
+
+\section*{Concavity of the objective}
+
+Let \(x = d x_1 + (1-d)x_2\), with \(d\in[0,1]\). Since \(f(\cdot,\theta)\) is affine in its first argument,
+\[
+f(x,\theta) \;=\; f(d x_1 + (1-d)x_2,\theta)
+\;=\; d f(x_1,\theta) + (1-d) f(x_2,\theta).
+\]
+By concavity of \(u\),
+\[
+u(f(x,\theta))
+\;\ge\;
+d\,u(f(x_1,\theta)) + (1-d)\,u(f(x_2,\theta)).
+\]
+Integrating both sides with respect to \(F\),
+\[
+U(x)
+\;\ge\;
+dU(x_1) + (1-d)U(x_2).
+\]
+Hence \(U\) is concave in \(x\).
+
+\section*{First-order analysis}
+
+Differentiate under the integral sign:
+\[
+U'(x)
+=
+\int_{\Theta} u'(f(x,\theta))\, f_x(x,\theta)\, dF(\theta).
+\]
+Because
+\[
+f_x(x,\theta) = \theta-(1+r),
+\]
+we obtain
+\[
+U'(x)
+=
+\int_{\Theta} u'(f(x,\theta))(\theta-(1+r))\, dF(\theta)
+=
+\mathbb{E}\big[u'(f(x,\theta))(\theta-(1+r))\big].
+\]
+Evaluating at \(x=0\), note that \(f(0,\theta)=w(1+r)\). Thus
+\[
+U'(0)
+=
+\mathbb{E}\big[u'(w(1+r))(\theta-(1+r))\big]
+=
+u'(w(1+r))\big(\mathbb{E}[\theta]-(1+r)\big).
+\]
+
+\section*{Implications for the optimal investment}
+
+\subsection*{Case \(\mathbb{E}[\theta] < 1+r\)}
+
+Then \(U'(0)<0\). Since \(U\) is concave, \(U'\) is nonincreasing, so \(U'(x)\le U'(0)<0\) for all \(x\ge 0\). Therefore the maximizer over \(x\ge 0\) is
+\[
+x^* = 0.
+\]
+
+\subsection*{Case \(\mathbb{E}[\theta] = 1+r\)}
+
+Then \(U'(0)=0\). Concavity implies \(U'(x)\le 0\) for all \(x\ge 0\). Hence \(x^*=0\) is still optimal.
+
+\subsection*{Case \(\mathbb{E}[\theta] > 1+r\)}
+
+Then \(U'(0)>0\). Hence \(x=0\) cannot be optimal. If a maximizer exists, it must satisfy
+\[
+x^*>0.
+\]
+
+\section*{Certainty Equivalents and Decreasing Relative Risk Aversion in Multiplicative Lotteries}
+
+\section*{Setup: multiplicative risk and certainty equivalents}
+
+Consider an agent with initial wealth \(w>0\) who evaluates \emph{multiplicative} lotteries over \(\mathbb{R}_+\). A lottery is represented by a nonnegative random variable \(Y\) with cdf \(F\). Preferences are represented by
+\[
+U(w;F) \;=\; \int_{\mathbb{R}_+} u(wy)\, dF(y),
+\]
+where \(u:\mathbb{R}_+\to\mathbb{R}\) is twice differentiable, increasing, and concave.
+
+Define the certainty--equivalent final wealth \(\bar c(w;F,u)\) by
+\[
+u(\bar c(w;F,u)) \;=\; \int_{\mathbb{R}_+} u(wy)\, dF(y),
+\]
+and the certainty--equivalent gross return by
+\[
+CE(w;F,u) \;=\; \frac{\bar c(w;F,u)}{w}.
+\]
+
+\section*{From scaled utility to relative risk aversion}
+
+Fix \(w>0\) and define the scaled utility (utility over gross returns)
+\[
+u_w(y) \;=\; u(wy).
+\]
+This is the utility function the agent implicitly uses when she treats \(y\) as the ``outcome'' (a multiplicative factor).
+
+The certainty equivalent condition can be written as
+\[
+u(\bar c(w;F,u)) \;=\; \int u(wy)\, dF(y).
+\]
+Since \(CE(w;F,u)=\bar c(w;F,u)/w\), we can solve for \(\bar c(w;F,u)\) as
+\[
+\bar c(w;F,u) \;=\; w\, CE(w;F,u).
+\]
+Substituting into the certainty equivalent definition yields
+\[
+u\!\big(w\,CE(w;F,u)\big) \;=\; \int u(wy)\, dF(y).
+\]
+
+Now compute derivatives of \(u_w\). First derivative:
+\[
+u_w'(y) \;=\; \frac{d}{dy}u(wy) \;=\; u'(wy)\cdot w \;=\; w\,u'(wy).
+\]
+Second derivative:
+\[
+u_w''(y) \;=\; \frac{d}{dy}\big(w\,u'(wy)\big)
+\;=\; w\cdot u''(wy)\cdot w
+\;=\; w^2 u''(wy).
+\]
+
+The Arrow--Pratt coefficient of \emph{absolute} risk aversion for \(u_w\) at outcome \(y\) is
+\[
+r_A(y;u_w)
+\;=\;
+-\frac{u_w''(y)}{u_w'(y)}
+\;=\;
+-\frac{w^2 u''(wy)}{w u'(wy)}
+\;=\;
+-\frac{w\,u''(wy)}{u'(wy)}.
+\]
+Evaluating at \(y=1\),
+\[
+r_A(1;u_w)
+\;=\;
+-\frac{w\,u''(w)}{u'(w)}.
+\]
+But the Arrow--Pratt coefficient of \emph{relative} risk aversion for \(u\) is
+\[
+R(x) \;=\; -\frac{x u''(x)}{u'(x)}.
+\]
+Setting \(x=w\), we obtain
+\[
+R(w) \;=\; -\frac{w u''(w)}{u'(w)} \;=\; r_A(1;u_w).
+\]
+So, in a multiplicative setting, relative risk aversion of \(u\) at wealth \(w\) coincides with the absolute risk aversion of the scaled utility \(u_w\) evaluated at the reference point \(y=1\).
+
+\section*{Monotonicity link: DRRA and certainty--equivalent returns}
+
+For any fixed distribution \(F\), define
+\[
+\bar c(w) \equiv \bar c(w;F,u),
+\qquad
+CE(w) \equiv CE(w;F,u)=\frac{\bar c(w)}{w}.
+\]
+The quantity featured in the statement,
+\[
+\frac{w}{\bar c(w)},
+\]
+can be rewritten using \(CE(w)\):
+\[
+\frac{w}{\bar c(w)}
+\;=\;
+\frac{w}{w\,CE(w)}
+\;=\;
+\frac{1}{CE(w)}.
+\]
+Therefore,
+\[
+\frac{w}{\bar c(w)} \text{ is decreasing in } w
+\quad \Longleftrightarrow \quad
+\frac{1}{CE(w)} \text{ is decreasing in } w
+\quad \Longleftrightarrow \quad
+CE(w) \text{ is increasing in } w.
+\]
+So the two monotonicity statements are exactly the same.
+
+The key economic content is that decreasing relative risk aversion (DRRA),
+\[
+R(x) = -\frac{x u''(x)}{u'(x)} \quad \text{decreasing in } x,
+\]
+means that as wealth increases the agent becomes \emph{less} averse to proportional (multiplicative) risks. In this multiplicative environment, ``wealth going up'' corresponds to comparing the scaled utilities \(u_w(\cdot)=u(w\cdot)\) across different values of \(w\). DRRA implies that higher \(w\) leads to a lower effective level of aversion to the same distribution of gross returns \(Y\), which is captured by a higher certainty--equivalent gross return \(CE(w)\).
+
+\section*{Economic interpretation}
+
+As wealth increases, the agent becomes less averse to proportional risk. As a result, the certainty--equivalent return increases with wealth. Equivalently, richer agents require a smaller compensation \emph{relative to their wealth} to accept the same multiplicative risky lottery.
+
+\end{document}
